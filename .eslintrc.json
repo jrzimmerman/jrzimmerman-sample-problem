@@ -7,19 +7,12 @@
     "node": true
   },
   "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
     "sourceType": "module"
   },
   "rules": {
     "no-console": "warn"
   },
-  "plugins": [
-    "react"
-  ],
   "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended"
+    "eslint:recommended"
   ]
 }

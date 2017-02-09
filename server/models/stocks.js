@@ -1,12 +1,12 @@
 const fs = require('fs');
 const path = require('path');
-const csv = require('csv');
+const csv = require('csvtojson');
 const _ = require('lodash');
 
 const dir = '../../data/';
 // loadStocks asyncronously returns all stocks found in the data folder dynamically
 function loadStocks(callback) {
-  // stocks will be out hashmap of stock ticker data
+  // stocks will be a hashmap of stock ticker data
   const stocks = {};
   // I used count to wait until all csv files were parsed
   let count = 0;
@@ -20,35 +20,26 @@ function loadStocks(callback) {
         // check if the file is actually a csv before parsing it
         if (splitName[1] === 'csv') {
           const name = splitName[0];
-          // read in the file to be parsed as a string
-          fs.readFile(path.resolve(__dirname, dir, file), 'utf-8', function (err, output) {
-            // asycronously parse the file
-            console.log('output: ', output);
-            csv.parse(output, { delimiter: ',' }, function(err, data) {
-              if (err) {
-                console.error('error parsing ' + file + ':\n' + err);
-                callback(err, null);
-              } else {
-                // dynamically pull the keys from the csv
-                const keys = data[0];
-                // create a collection of objects
-                const collection = [];
-                for (let i = 1; i < data.length; i++) {
-                  const obj = {};
-                  for (let j = 0; j < data[i]. length; j++) {
-                    obj[keys[j]] = data[i][j];
-                  }
-                  collection.push(obj);
-                }
-                const sortedCollection = _.sortBy(collection, 'Date');
-                stocks[name] = sortedCollection;
-                count++;
-                // if count is equal to the length of files, invoke our callback
-                if (count === filenames.length) {
-                  callback(null, stocks);
-                }
-              }
-            });
+          const collection = [];
+          csv().fromFile(path.resolve(__dirname, dir, file))
+          .on('json', function(json) {
+            // push each parsed row to the collection
+            collection.push(json);
+          })
+          .on('done', function (error) {
+            if (error) {
+              console.error('error parsing ' + name + ':\n' + err);
+              callback(error, null);
+            }
+            // sort the collection by date
+            const sortedCollection = _.sortBy(collection, 'Date');
+            // save collection on the company name key
+            stocks[name] = sortedCollection;
+            count++;
+            // if count is equal to the length of files, invoke our callback
+            if (count === filenames.length) {
+              callback(null, stocks);
+            }
           });
         }
       });
