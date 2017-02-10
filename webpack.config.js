@@ -1,10 +1,9 @@
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   context: path.resolve(__dirname),
-  entry: './client/App.js',
+  entry: './client/boot.ts',
   devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -12,12 +11,12 @@ module.exports = {
     filename: '[name].[chunkhash].js'
   },
   resolve: {
-    extensions: ['.js']
+    extensions: ['.ts', '.js']
   },
    module: {
     rules: [
-      { enforce: 'pre', test: /\.js$/, use: 'eslint-loader', exclude: /node_modules/ },
-      { test: /\.js?$/, use: 'babel-loader', exclude: /node_modules/ }
+      { enforce: 'pre', test: /\.ts$/, use: 'tslint-loader', exclude: /node_modules/ },
+      { test: /\.ts?$/, use: 'awesome-typescript-loader', exclude: /node_modules/ }
     ]
   },
   plugins: [
