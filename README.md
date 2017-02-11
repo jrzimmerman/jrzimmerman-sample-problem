@@ -1,6 +1,5 @@
-# Hi kWantera!
-
 ## Instructions
+Please be sure to have node installed.
 
 ```
 npm install
