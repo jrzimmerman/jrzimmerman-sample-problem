@@ -8,14 +8,12 @@ npm start
 ```
 
 ## Description
-This project was built with Node and Express on the backend, and React on the frontend. I'm using webpack to bundle my files.
+This project was built with Node and Express on the backend, and Angular 2 on the frontend.
 
 I am dynamically parsing the CSV files on the backend to account for any csv files located in the data folder.
 
-I have previous experience with Highcharts, so I have chosen to use the `react-highcharts` npm module to display the chart.
-
-At Red Ventures, I use both React and Redux to handle state. For this small project I have chosen to only use React state to manage chart data.
-
+The largest hurdle for me was deciding on rolling my own custom build solution, or leveraging the angular cli.
+I wound up deciding to go with the angular cli so that I could focus on the problem, rather than the build.
 
 Web App Programming Challenge
 =============================
