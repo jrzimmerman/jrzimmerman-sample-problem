@@ -11,7 +11,9 @@ This project was built with Node and Express on the backend, and Angular 2 on th
 
 I am dynamically parsing the CSV files on the backend to account for any csv files located in the data folder.
 
-The largest hurdle for me was deciding on rolling my own custom build solution, or leveraging the angular cli.
+I've chosen to use the angular-highcharts package.
+
+The largest hurdle was deciding on rolling my own custom build solution, or leveraging the angular cli.
 I wound up deciding to go with the angular cli so that I could focus on the problem, rather than the build.
 
 Web App Programming Challenge
