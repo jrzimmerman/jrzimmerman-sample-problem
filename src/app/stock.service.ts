@@ -1,22 +1,25 @@
 import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+
+import { Stock } from './stock';
 
 @Injectable()
 export class StockService {
-  stocks: Array<any>;
-  constructor() {
-    this.stocks = [{
-        name: 'AAPL',
-        data: [2, 3, 5, 8, 13],
-        allowPointSelect: true
-      }, {
-        name: 'IBM',
-        data: [-2, -3, -5, -8, -13],
-        allowPointSelect: true
-      }];
+  private stocksUrl = 'api/stocks';
+
+  constructor(private http: Http) {}
+
+  getStocks(): Observable<Stock[]> {
+    return this.http.get(this.stocksUrl)
+               .map(this.extractData);
   }
 
-  getStocks() {
-    return this.stocks;
+  private extractData(res: Response) {
+    const body = res.json();
+    console.log('body: ', body);
+    return body.data || { };
   }
 
 }
