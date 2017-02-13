@@ -11,15 +11,25 @@ export class StockService {
 
   constructor(private http: Http) {}
 
-  getStocks(): Observable<Stock[]> {
+  getStocks(): Observable<any> {
     return this.http.get(this.stocksUrl)
-               .map(this.extractData);
+               .map((res: Response) => {
+                  const body = res.json();
+                  console.log('body: ', body);
+                  return body || { };
+                });
   }
 
   private extractData(res: Response) {
     const body = res.json();
     console.log('body: ', body);
-    return body || { };
+    return body || {};
+    // return {
+    //   title : { text: 'Closing Stock Price Over Time' },
+    //   series: body || { },
+    //   xAxis: { title: { text: 'Date' } },
+    //   yAxis: { title: { text: 'Closing Price' } },
+    // };
   }
 
 }

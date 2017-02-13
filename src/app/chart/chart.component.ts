@@ -11,16 +11,18 @@ import { Stock } from '../stock';
 })
 export class ChartComponent implements OnInit {
   options: Object;
-  stocks: Stock[];
-  mode = 'Observable';
+  stocks: Array<any>;
 
   constructor(private stockService: StockService ) { }
 
   ngOnInit() { this.getStocks(); }
 
   getStocks() {
-    this.stockService.getStocks().subscribe(stocks => this.stocks = stocks);
-    console.log('stocks: ', this.stocks);
+    this.stockService.getStocks().subscribe(stocks => {
+      console.log('stocks: ', stocks);
+      return this.stocks = stocks;
+    });
+    console.log('this.stocks: ', this.stocks);
     this.options = {
       title : { text: 'Closing Stock Price Over Time' },
       series: this.stocks,
