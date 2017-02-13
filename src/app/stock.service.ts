@@ -13,23 +13,20 @@ export class StockService {
 
   getStocks(): Observable<any> {
     return this.http.get(this.stocksUrl)
-               .map((res: Response) => {
-                  const body = res.json();
-                  console.log('body: ', body);
-                  return body || { };
-                });
+               .map(this.extractData);
   }
 
   private extractData(res: Response) {
     const body = res.json();
-    console.log('body: ', body);
-    return body || {};
-    // return {
-    //   title : { text: 'Closing Stock Price Over Time' },
-    //   series: body || { },
-    //   xAxis: { title: { text: 'Date' } },
-    //   yAxis: { title: { text: 'Closing Price' } },
-    // };
+    const options = {
+      title : { text: 'Closing Stock Price Over Time' },
+      series: body || { },
+      xAxis: { title: { text: 'Date' } },
+      yAxis: { title: { text: 'Closing Price' } },
+    };
+    console.log('service options: ', options);
+    // return body || {};
+    return options;
   }
 
 }
