@@ -19,7 +19,7 @@ export class StockService {
   private extractData(res: Response) {
     const body = res.json();
     console.log('body: ', body);
-    return body.data || { };
+    return body || { };
   }
 
 }
