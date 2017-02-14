@@ -16,16 +16,24 @@ export class StockService {
                .map(this.extractData);
   }
 
+  // extract data will format the data to be used by highcharts
   private extractData(res: Response) {
     const body = res.json();
+    const companies = Object.keys(body);
+    const seriesData = [];
+    companies.forEach(company => {
+      seriesData.push({
+        name: company.toString().toUpperCase(),
+        data: body[company].Close,
+        allowPointSelect: true
+      });
+    });
     const options = {
       title : { text: 'Closing Stock Price Over Time' },
-      series: body || { },
-      xAxis: { title: { text: 'Date' } },
+      series: seriesData || [],
+      xAxis: { categories: body[companies[0]].Date || [] },
       yAxis: { title: { text: 'Closing Price' } },
     };
-    console.log('service options: ', options);
-    // return body || {};
     return options;
   }
 

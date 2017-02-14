@@ -33,8 +33,20 @@ function loadStocks(callback) {
             }
             // sort the collection by date
             const sortedCollection = _.sortBy(collection, 'Date');
-            // save collection on the company name key
-            stocks[name] = sortedCollection;
+            // convert collect to a single collection of arrays
+            let arrays = {};
+            let keys = Object.keys(sortedCollection[0]);
+            keys.forEach(key => {
+              arrays[key] = sortedCollection.map((item) => {
+                if (key === 'Close') {
+                  return Number(item[key]);
+                } else {
+                  return item[key]
+                }
+              });
+            });
+            // save arrays collection on the company name key
+            stocks[name] = arrays;
             count++;
             // if count is equal to the length of files, invoke our callback
             if (count === filenames.length) {

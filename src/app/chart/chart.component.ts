@@ -14,12 +14,13 @@ export class ChartComponent implements OnInit {
 
   constructor(private stockService: StockService ) { }
 
+  // on init get stock data from server
   ngOnInit() { this.getStocks(); }
 
+  // pass stock data to highcharts component
   getStocks() {
-    this.stockService.getStocks().subscribe(options => {
-      console.log('component options: ', options);
-      return this.options = options;
+    this.stockService.getStocks().subscribe(stocks => {
+      return this.options = stocks;
     });
   }
 
