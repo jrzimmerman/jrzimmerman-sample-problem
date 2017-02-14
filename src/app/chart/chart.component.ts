@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StockService } from '../stock.service';
-import { Observable } from 'rxjs/Observable';
-import { Series } from '../series';
+import { Chart } from '../chart';
 
 @Component({
   selector: 'app-chart',
@@ -10,7 +9,7 @@ import { Series } from '../series';
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements OnInit {
-  options: Observable<Series>;
+  options: Chart;
 
   constructor(private stockService: StockService) { }
 
