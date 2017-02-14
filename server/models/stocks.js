@@ -35,7 +35,7 @@ function loadStocks(callback) {
             const sortedCollection = _.sortBy(collection, 'Date');
             // convert collect to a single collection of arrays
             let arrays = {};
-            let keys = Object.keys(sortedCollection[0]);
+            let keys = Object.keys(sortedCollection[0]) || [];
             keys.forEach(key => {
               arrays[key] = sortedCollection.map((item) => {
                 if (key === 'Close') {

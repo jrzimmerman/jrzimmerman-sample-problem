@@ -18,7 +18,7 @@ export class StockService {
   // extract data will format the data to be used by highcharts
   private extractData(res: Response) {
     const body = res.json();
-    const companies = Object.keys(body);
+    const companies = Object.keys(body) || [];
     const seriesData = [];
     companies.forEach(company => {
       seriesData.push({
