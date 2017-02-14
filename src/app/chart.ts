@@ -1,6 +1,14 @@
 export interface Chart {
-  title: Object;
+  title: {
+    text: String;
+  };
   series: Array<number>;
-  xAxis: Object;
-  yAxis: Object;
-}
+  xAxis: {
+    categories: Array<string>;
+  };
+  yAxis: {
+    title: {
+      text: string;
+    };
+  };
+};

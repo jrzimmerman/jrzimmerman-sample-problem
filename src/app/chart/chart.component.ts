@@ -18,8 +18,8 @@ export class ChartComponent implements OnInit {
 
   // pass stock data to highcharts component
   getStocks() {
-    this.stockService.getStocks().subscribe(stocks => (
-      this.options = stocks
+    this.stockService.getStocks().subscribe(chart => (
+      this.options = chart
     ));
   }
 }
