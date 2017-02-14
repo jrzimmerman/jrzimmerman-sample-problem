@@ -4,6 +4,7 @@ Please be sure to have node installed.
 ```
 npm install
 npm start
+open localhost:8000 in your browser
 ```
 
 ## Description
