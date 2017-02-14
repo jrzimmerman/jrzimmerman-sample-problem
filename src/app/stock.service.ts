@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-
-import { Stock } from './stock';
+import { Chart } from './chart';
 
 @Injectable()
 export class StockService {
@@ -11,7 +10,7 @@ export class StockService {
 
   constructor(private http: Http) {}
 
-  getStocks(): Observable<any> {
+  getStocks(): Observable<Chart> {
     return this.http.get(this.stocksUrl)
                .map(this.extractData);
   }
