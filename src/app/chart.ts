@@ -1,6 +1,6 @@
 export interface Chart {
   title: Object;
-  series: Array<any>;
+  series: Array<number>;
   xAxis: Object;
   yAxis: Object;
 }
