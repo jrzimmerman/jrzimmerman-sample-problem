@@ -19,13 +19,13 @@ I am dynamically parsing the CSV files on the backend to account for any csv fil
 I've chosen to use the angular-highcharts package to present the stock data.
 
 The largest hurdle I encountered was binding the highcharts component data to the chart component.
-I wanted to attmempt to build a dynamic flexible solution, although I feel that I've cheated by manipulating the data on the backend to handle for highcharts, as well as passing the highcharts object from the service to the component, rather than generating the highchart specific data on the service.
-
+I wanted to attempt to build a dynamic, and flexible solution, although I feel that I've cheated by manipulating the data on the backend to handle for highcharts.
+I am also passing the highcharts object from the service to the component, rather than generating the highchart specific data on the component.
 
 Another hurdle I encountered was deciding on rolling my own custom build solution, or leveraging the angular cli.
 I wound up deciding to go with the angular cli so that I could focus on the problem, rather than the build.
 
-Being the first time I've worked with Angular 2, Observables, and TypeScript, this project took much longer than I'd like to admit versus in React and Redux.
+Being the first time I've worked with Angular 2, Observables, and TypeScript, this project took much longer than I'd like to admit versus in React and Redux, but presented a wealth of learnings.
 
 Web App Programming Challenge
 =============================
